@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        background: url("https://images.unsplash.com/photo-1634976270317-043192e28074?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2066&q=80");
+        background-repeat: no-repeat;
+      }
+      .navbar-nav {
+        margin-left: 250px;
+      }
+      .nav-item {
+        padding-left: 30px;
+      }
+      .navbar-brand {
+        padding-top: 7px;
+        margin-left: 45px;
+        color: rgb(235, 11, 235) !important;
+        font-size: 24px;
+      }
+      .navbar-nav .nav-link {
+        color: #fff !important;
+        font-size: 20px;
+      }
+      .navbar-nav .nav-link:hover {
+        color: rgb(128, 21, 106) !important;
+      }
+      .main {
+        text-align: center;
+      }
+      .main h1 {
+        color: white;
+      }
+      .main h2 {
+        color: rgb(93, 219, 241);
+      }
+      .type a {
+        text-decoration: none;
+        color: lightcoral;
+      }
+      .about h1 {
+        text-align: center;
+        color: rgb(20, 127, 214) !important;
+      }
+      .about p {
+        margin-left: 50px;
+        color: white !important;
+        font-size: 20px;
+      }
+      .purple {
+        color: rgb(49, 167, 214) !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Ahsan</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact us</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <br /><br /><br /><br /><br /><br /><br />
+    <section class="main">
+      <h1>Hi There!</h1>
+      <h2>I'M AHSAN OMERJEE</h2>
+      <br />
+      <h1 class="type">
+        <a
+          href=""
+          class="typewrite"
+          data-period="2000"
+          data-type='[ "Student!", "Studying BSCS!", "Front-End Web Developer!", "I Love to Develop." ]'
+        >
+          <span class="wrap"></span>
+        </a>
+      </h1>
+    </section>
+    <br /><br /><br /><br /><br /><br />
+    <section class="about">
+      <h1>Let me Introduce Myself!</h1>
+      <br />
+      <p>
+        I am a Student at <i class="purple"> NED University </i>& I beleive in
+        innovations. I fell in love with programming
+        <br />
+        and I have at least learnt something, I think…🤷‍♂️
+        <br /><br />
+        Currently i am learning
+        <i class="purple">Web-Development</i>...&#128187;
+      </p>
+    </section>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      var TxtType = function (el, toRotate, period) {
+        this.toRotate = toRotate;
+        this.el = el;
+        this.loopNum = 0;
+        this.period = parseInt(period, 10) || 2000;
+        this.txt = "";
+        this.tick();
+        this.isDeleting = false;
+      };
+
+      TxtType.prototype.tick = function () {
+        var i = this.loopNum % this.toRotate.length;
+        var fullTxt = this.toRotate[i];
+
+        if (this.isDeleting) {
+          this.txt = fullTxt.substring(0, this.txt.length - 1);
+        } else {
+          this.txt = fullTxt.substring(0, this.txt.length + 1);
+        }
+
+        this.el.innerHTML = '<span class="wrap">' + this.txt + "</span>";
+
+        var that = this;
+        var delta = 200 - Math.random() * 100;
+
+        if (this.isDeleting) {
+          delta /= 2;
+        }
+
+        if (!this.isDeleting && this.txt === fullTxt) {
+          delta = this.period;
+          this.isDeleting = true;
+        } else if (this.isDeleting && this.txt === "") {
+          this.isDeleting = false;
+          this.loopNum++;
+          delta = 500;
+        }
+
+        setTimeout(function () {
+          that.tick();
+        }, delta);
+      };
+
+      window.onload = function () {
+        var elements = document.getElementsByClassName("typewrite");
+        for (var i = 0; i < elements.length; i++) {
+          var toRotate = elements[i].getAttribute("data-type");
+          var period = elements[i].getAttribute("data-period");
+          if (toRotate) {
+            new TxtType(elements[i], JSON.parse(toRotate), period);
+          }
+        }
+        // INJECT CSS
+        var css = document.createElement("style");
+        css.type = "text/css";
+        css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+        document.body.appendChild(css);
+      };
+    </script>
+    <br /><br /><br /><br /><br />
+    <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">
+      <div class="container text-center">
+        <small>Copyright &copy; 2021 Ahsan Omerjee</small>
+      </div>
+    </footer>
+  </body>
+</html>
